@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema({
+    taskLanguage:{
+        type:String,
+        required:true
+    },
     taskname:{
         type:String,
         required:true,
         unique:true
     },
-    frontend_sourcecode:{
-        type:String,
-        required:true
-    },
-    backend_sourcecode:{
+    deadline:{
         type:String,
         required:true
     }

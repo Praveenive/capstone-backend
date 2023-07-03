@@ -6,7 +6,7 @@ const router = express.Router()
 router.post("/createquery" , async(req,res)=>{
     try {
         const queries = await new Queries({
-            ...req.body,user:req.user._id
+            ...req.body,user:req.user._id,Querystatus:"Not Assigned"
         }).save()
     console.log(queries)
         if(!queries){
@@ -22,7 +22,6 @@ router.post("/createquery" , async(req,res)=>{
 router.get("/myquery", async(req,res)=>{
     try {
         const query = await Queries.find({user:req.user._id})
-        console.log(query,req.user._id)
         if(!query){
             res.status(400).json({message:"Query Not Found"})
         }
@@ -46,5 +45,22 @@ router.get("/allqueries", async(req,res)=>{
     }
 })
 
+router.put("/editquery/:id", async(req,res)=>{
+    try {
+        const updateQuery = await Queries.findOneAndUpdate(
+            {_id:req.params.id},
+            {$set:req.body},
+            {new:true}
+        )
+        console.log(updateQuery)
+        if(!updateQuery){
+            return res.status(400).json({message:"Query Not found"})
+        }
+        res.status(200).json({data:updateQuery,message:"Query Updated succesfully"})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message:"Server issues"})
+    }
+})
 
 export const queryRouter = router

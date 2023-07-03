@@ -21,8 +21,11 @@ const querySchema = new mongoose.Schema({
     },
     AvailableTimeslots:{
         type:String,
-        format:"time",
         reqiured:true
+    },
+    Querystatus:{
+        type:String,
+        required:true
     },
     user:{
         type : ObjectId,

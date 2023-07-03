@@ -17,7 +17,9 @@ router.post("/signup", async(req,res)=>{
          firstname: req.body.firstname,
          lastname: req.body.lastname,
          email: req.body.email,
-         password: hashedpassword
+         password: hashedpassword,
+         typeofuser:"student",
+         batch:"Not Assigned"
      }).save()
         res.status(202).json({data:user,message:"Signup Successully Done"})
 
@@ -41,7 +43,7 @@ router.post("/login", async(req,res)=>{
            return  res.status(404).json({message:"Invalid credentials"})
         } 
         const token = generateJwtToken(user._id)
-        res.status(202).json({message:"Logged in successfully",token})  
+        res.status(202).json({data:user,message:"Logged in successfully",token,role:user.typeofuser,id:user._id})  
     } catch (error) {
         console.log(error)
        return res.status(500).json({message:"While login Error"})

@@ -19,6 +19,15 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    typeofuser:{
+        type:String,
+        required:true,
+        enum:["admin","student"]
+    },
+    batch:{
+        type:String,
+        required:true
     }
 })
 
