@@ -23,6 +23,6 @@ app.use("/query",authenticated,queryRouter)
 app.use("/task",authenticated,taskRouter)
 app.use("/leave",authenticated,leaveRouter)
 app.use("/stu",authenticated,studentRouter)
-app.use("/course", authenticated,courseRouter)
+app.use("/course",courseRouter)
 
 app.listen(PORT,()=>console.log(`Server started in ${PORT}`))
