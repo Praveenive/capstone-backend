@@ -25,4 +25,4 @@ app.use("/leave",authenticated,leaveRouter)
 app.use("/stu",authenticated,studentRouter)
 app.use("/course",courseRouter)
 
-app.listen(PORT,()=>console.log(`Server started in ${PORT}`))
+app.listen(PORT, () => console.log(`Server started in ${PORT}`));
